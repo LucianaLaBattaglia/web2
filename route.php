@@ -15,6 +15,9 @@ if($parteURL[0]==""){
     if($parteURL[0]=='borrar'){
         delete_pagos($parteURL[1]);
     }
+    if($parteURL[0]=="procesar"){
+        procesar_pagos($parteURL[1]);
+    }
 }
 
 

@@ -33,6 +33,19 @@ function home(){
     </thead>
     <tbody>
     <?php foreach (get_pagos()as $pago){
+      print_r ($pago->procesado);
+      if($pago->procesado == 1){
+      echo '<tr>
+        <th scope="row"><s>'.$pago->id_pagos.'</th>
+        <td>'.$pago->id_deudores.'</td>
+        <td>'.$pago->cuota.'</td>
+        <td>'.$pago->cuota_capital.'</td>
+        <td>'.$pago->fecha_pago.'</td>
+        <td><a href="borrar/'.$pago->id_pagos.'</s>">BORRAR</a></td>
+      </tr>';
+      }
+      else{
+        if($pago->procesado == 0){
       echo '<tr>
         <th scope="row">'.$pago->id_pagos.'</th>
         <td>'.$pago->id_deudores.'</td>
@@ -40,7 +53,10 @@ function home(){
         <td>'.$pago->cuota_capital.'</td>
         <td>'.$pago->fecha_pago.'</td>
         <td><a href="borrar/'.$pago->id_pagos.'">BORRAR</a></td>
+        <td><a href="procesar/'.$pago->id_pagos.'">PROCESADO</a></td>
       </tr>';
+      }
+    }
     }
       ?>
     </tbody>
