@@ -6,14 +6,15 @@
 function conectar(){
 
 return new PDO('mysql:host=localhost;'
-.'dbname=bd_registropagos;charset=utf8'
+.'dbname=db_registro;charset=utf8'
 , 'root', '');
 
 }
 
 function get_pagos(){
 $db=conectar();
-$sentencia= $db-> prepare ("select*from pagos");
+$sentencia= $db-> prepare ("SELECT `deudores`.`nombre`, `pagos`.`cuota`, `pagos`.`cuota_capital`, `pagos`.`fecha_pago`, `pagos`.`procesado`, `pagos`.`id_pagos`FROM `deudores` LEFT JOIN `pagos` ON `pagos`.`id_deudores` = `deudores`.`id_deudores`");
+
 $sentencia-> execute();
 return $sentencia->fetchAll(PDO::FETCH_OBJ);
 }
