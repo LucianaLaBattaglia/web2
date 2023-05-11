@@ -2,18 +2,20 @@
 
 require_once 'index.php';
 require_once 'pagos.php';
+require_once 'controllers/pagoscontroller.php';
 
 $parteURL= explode("/", $_GET['action']);
 
+$controller=new pagoscontroller();
 
 if($parteURL[0]==""){
-    home();
+    $controller->home();
 }else{
     if($parteURL[0]=='agregar'){
-        insert_pagos();
+    $controller->insertarpagos();
     }
     if($parteURL[0]=='borrar'){
-        delete_pagos($parteURL[1]);
+       $controller->borrarpagos($parteURL[1]);
     }
     if($parteURL[0]=="procesar"){
         procesar_pagos($parteURL[1]);
